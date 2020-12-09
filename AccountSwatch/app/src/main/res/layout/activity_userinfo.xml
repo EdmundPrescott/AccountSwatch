@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#33302f">
+
+    <NumberPicker
+        android:id="@+id/numberPicker_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_length" />
+
+    <TextView
+        android:id="@+id/password_length"
+        android:layout_width="204dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#def4ff"
+        android:padding="5dp"
+        android:text="@string/password_length"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include_chars_password" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/include_nums_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/include_numbers"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passowrd_header" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/include_chars_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/include_special_characters"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include_nums_password" />
+
+    <TextView
+        android:id="@+id/username_length"
+        android:layout_width="204dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#def4ff"
+        android:padding="5dp"
+        android:text="@string/username_length"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include_chars_password" />
+
+    <NumberPicker
+        android:id="@+id/numberPicker_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username_length"
+        />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/include_nums_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/include_numbers"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username_header" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/include_chars_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/include_special_characters"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include_nums_username" />
+
+    <TextView
+        android:id="@+id/username_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="#def4ff"
+        android:padding="5dp"
+        android:text="@string/username_details"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/passowrd_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#def4ff"
+        android:padding="5dp"
+        android:text="@string/password_details"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include_chars_username" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

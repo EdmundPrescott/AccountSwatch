@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Account Swatch</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="write_button">Save Email</string>
+    <string name="read_button">Read</string>
+    <string name="generate_user_info">Generate User Info</string>
+
+    <!-- Label for the size preference -->
+    <string name="pref_size_label">Size Multiplier</string>
+
+    <!-- Key name for storing size in SharedPreferences -->
+    <string name="pref_size_key" translatable="false">size</string>
+
+    <!-- Default for size preference -->
+    <string name="pref_size_default" translatable="false">1</string>
+    <string name="password_length">Password Length</string>
+    <string name="include_numbers">Include Numbers</string>
+    <string name="include_special_characters">Include Special Characters</string>
+    <string name="enter">Enter</string>
+    <string name="username_length">Username Length</string>
+    <string name="username_details">Username Details</string>
+    <string name="password_details">Password Details</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="url">Website Name</string>
+    <string name="create_account">Create Account</string>
+    <string name="delete">Delete</string>
+    <string name="send_receipt">Send Receipt</string>
+</resources>
