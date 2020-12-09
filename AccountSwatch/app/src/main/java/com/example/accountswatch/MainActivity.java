@@ -407,8 +407,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         editor.remove(pref);
         editor.apply();
 
-        accounts.remove(position);
-        accounts_view.getAdapter().notifyItemChanged(accounts.size());
+        accounts.clear();
+        mAdapter = new AccountListAdapter(accounts, this, this);
+        accounts_view.setAdapter(mAdapter);
+        accounts_view.setLayoutManager(new LinearLayoutManager(this));
+        readFileAndFill();
 
     }
 
