@@ -8,6 +8,7 @@
     android:orientation="vertical"
     android:background="#33302f">
 
+    <!-- Individual of the recyclerview -->
     <TextView
         android:id="@+id/account_item_name"
         android:layout_width="match_parent"

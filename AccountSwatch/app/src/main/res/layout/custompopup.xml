@@ -6,6 +6,7 @@
     android:layout_height="475dp"
     android:layout_gravity="center">
 
+    <!-- Textviews displaying account information -->
     <TextView
         android:id="@+id/username_popup"
         android:layout_width="0dp"
@@ -39,17 +40,6 @@
         app:layout_constraintStart_toEndOf="@+id/copy_url"
         app:layout_constraintTop_toBottomOf="@+id/copy_password" />
 
-    <Button
-        android:id="@+id/delete_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#ff4754"
-        android:text="@string/delete"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_popup" />
-
     <TextView
         android:id="@+id/email_popup"
         android:layout_width="0dp"
@@ -61,6 +51,21 @@
         app:layout_constraintTop_toBottomOf="@+id/copy_url"
         android:textAlignment="center"/>
 
+    <!-- Delete Account button -->
+    <Button
+        android:id="@+id/delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#ff4754"
+        android:text="@string/delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_popup" />
+
+
+
+    <!-- Image buttons that copy account details to clipboard -->
     <ImageButton
         android:id="@+id/copy_username"
         android:layout_width="wrap_content"
@@ -94,6 +99,7 @@
         app:layout_constraintTop_toBottomOf="@+id/copy_url"
         app:srcCompat="@drawable/ic_add" />
 
+    <!-- Send account info to email button -->
     <Button
         android:id="@+id/send_email_button"
         android:layout_width="wrap_content"

@@ -7,7 +7,7 @@
     tools:context=".MainActivity"
     android:background="#33302f">
 
-
+    <!-- Enter email button, go to email activity -->
     <Button
         android:id="@+id/enter_email_button"
         android:layout_width="0dp"
@@ -20,6 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Create new account button, go to account activity -->
     <Button
         android:id="@+id/generate_username_password"
         android:layout_width="0dp"
@@ -31,6 +32,7 @@
         android:backgroundTint="#def4ff"
         android:padding="5dp"/>
 
+    <!-- Recyclerview -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/accounts_view"
         android:layout_width="0dp"

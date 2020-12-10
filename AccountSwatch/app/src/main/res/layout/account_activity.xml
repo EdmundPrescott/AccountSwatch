@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     android:background="#33302f">
 
+    <!-- Enter Username -->
+    <TextView
+        android:id="@+id/enter_username_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#def4ff"
+        android:text="@string/username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textAlignment="center"/>
+
     <EditText
         android:id="@+id/enter_username"
         android:layout_width="0dp"
@@ -19,17 +31,8 @@
         app:layout_constraintTop_toBottomOf="@+id/enter_username_title"
         android:textAlignment="center"/>
 
-    <TextView
-        android:id="@+id/enter_username_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="#def4ff"
-        android:text="@string/username"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textAlignment="center"/>
 
+    <!-- Enter Password -->
     <TextView
         android:id="@+id/enter_password_title"
         android:layout_width="0dp"
@@ -55,6 +58,7 @@
         app:layout_constraintTop_toBottomOf="@+id/enter_password_title"
         android:textAlignment="center"/>
 
+    <!-- Enter Title -->
     <TextView
         android:id="@+id/url_title"
         android:layout_width="0dp"
@@ -79,6 +83,7 @@
         app:layout_constraintTop_toBottomOf="@+id/url_title"
         android:textAlignment="center"/>
 
+    <!-- Create account button -->
     <Button
         android:id="@+id/create_account"
         android:layout_width="wrap_content"
