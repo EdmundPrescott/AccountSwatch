@@ -396,8 +396,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
 
     // Remove data from shared prefs and accounts.txt and recyclerview
     public void removeData(String pref, int position){
+        // delete account from txt
         writeFile(readFileExcluding(pref));
 
+        // delete account from shared prefs
         SharedPreferences sharedPreferences = getSharedPreferences(pref, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove(ACCOUNT_USERNAME);
@@ -407,6 +409,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         editor.remove(pref);
         editor.apply();
 
+        // update recyclerview
         accounts.clear();
         mAdapter = new AccountListAdapter(accounts, this, this);
         accounts_view.setAdapter(mAdapter);
@@ -419,9 +422,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
     public void sendMail(String name, String Message){
         Intent intent = new Intent(Intent.ACTION_SEND);
         String email = loadData("email_prefs","EMAIL");
+
         intent.putExtra(android.content.Intent.EXTRA_EMAIL,new String[] {email});
         intent.putExtra(Intent.EXTRA_SUBJECT,"New '"+name+"' account");
         intent.putExtra(Intent.EXTRA_TEXT,Message);
+
         intent.setType("message/rfc822");
         startActivity(intent.createChooser(intent,"Choose an email client"));
     }
