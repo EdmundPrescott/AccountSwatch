@@ -30,14 +30,14 @@
         app:layout_constraintTop_toBottomOf="@+id/copy_username" />
 
     <TextView
-        android:id="@+id/url_popup"
+        android:id="@+id/website_popup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:textAlignment="center"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/copy_url"
+        app:layout_constraintStart_toEndOf="@+id/copy_website"
         app:layout_constraintTop_toBottomOf="@+id/copy_password" />
 
     <TextView
@@ -48,10 +48,10 @@
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/copy_email"
-        app:layout_constraintTop_toBottomOf="@+id/copy_url"
+        app:layout_constraintTop_toBottomOf="@+id/copy_website"
         android:textAlignment="center"/>
 
-    <!-- Delete Account button -->
+    <!-- Delete Account Button -->
     <Button
         android:id="@+id/delete_button"
         android:layout_width="wrap_content"
@@ -62,8 +62,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email_popup" />
-
-
 
     <!-- Image buttons that copy account details to clipboard -->
     <ImageButton
@@ -84,7 +82,7 @@
         app:srcCompat="@drawable/ic_add" />
 
     <ImageButton
-        android:id="@+id/copy_url"
+        android:id="@+id/copy_website"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -96,7 +94,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/copy_url"
+        app:layout_constraintTop_toBottomOf="@+id/copy_website"
         app:srcCompat="@drawable/ic_add" />
 
     <!-- Send account info to email button -->

@@ -50,8 +50,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
     // Load tags
     private static final String ACCOUNT_USERNAME = "USERNAME";
     private static final String ACCOUNT_PASSWORD = "PASSWORD";
-    private static final String ACCOUNT_URL = "URL";
+    private static final String ACCOUNT_website = "website";
     private static final String ACCOUNT_EMAIL = "EMAIL";
+
+    // txt save/load file
+    private static final String FILE = "Accounts.txt";
 
     //endregion
 
@@ -63,12 +66,12 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
     // dialog variables
     private TextView username;
     private TextView password;
-    private TextView url;
+    private TextView website;
     private TextView email;
 
     private ImageButton copy_username;
     private ImageButton copy_password;
-    private ImageButton copy_url;
+    private ImageButton copy_website;
     private ImageButton copy_email;
 
     private Button delete;
@@ -139,13 +142,13 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
             Account newAccount = data.getExtras().getParcelable("result");
 
             // Saves account in preferences
-            saveData(newAccount.getUrl(),ACCOUNT_USERNAME,newAccount.getUsername());
-            saveData(newAccount.getUrl(),ACCOUNT_PASSWORD,newAccount.getPassword());
-            saveData(newAccount.getUrl(),ACCOUNT_URL,newAccount.getUrl());
-            saveData(newAccount.getUrl(),ACCOUNT_EMAIL,newAccount.getEmail());
+            saveData(newAccount.getWebsite(),ACCOUNT_USERNAME,newAccount.getUsername());
+            saveData(newAccount.getWebsite(),ACCOUNT_PASSWORD,newAccount.getPassword());
+            saveData(newAccount.getWebsite(),ACCOUNT_website,newAccount.getWebsite());
+            saveData(newAccount.getWebsite(),ACCOUNT_EMAIL,newAccount.getEmail());
 
             // Save account website in account.txt
-            storeAccount(newAccount.getUrl());
+            storeAccount(newAccount.getWebsite());
 
             // Add account to recyclerview
             accounts.addLast(newAccount);
@@ -192,13 +195,13 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
 
         username = myDialog.findViewById(R.id.username_popup);
         password = myDialog.findViewById(R.id.password_popup);
-        url = myDialog.findViewById(R.id.url_popup);
+        website = myDialog.findViewById(R.id.website_popup);
         email = myDialog.findViewById(R.id.email_popup);
 
         // Set textview text
         username.setText("Username: "+accounts.get(position).getUsername());
         password.setText("Password: "+accounts.get(position).getPassword());
-        url.setText("Website: "+accounts.get(position).getUrl());
+        website.setText("Website: "+accounts.get(position).getWebsite());
         email.setText("Email: "+accounts.get(position).getEmail());
 
         //endregion
@@ -210,14 +213,14 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
 
         copy_username = myDialog.findViewById(R.id.copy_username);
         copy_password = myDialog.findViewById(R.id.copy_password);
-        copy_url = myDialog.findViewById(R.id.copy_url);
+        copy_website = myDialog.findViewById(R.id.copy_website);
         copy_email = myDialog.findViewById(R.id.copy_email);
 
         // Initialize onclick functions for buttons
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                removeData(popupAccount.getUrl(), accountPosition);
+                removeData(popupAccount.getWebsite(), accountPosition);
 
             }
         });
@@ -225,7 +228,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         sendEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendMail(popupAccount.getUrl(),popupAccount.getAll());
+                sendMail(popupAccount.getWebsite(),popupAccount.getAll());
             }
         });
 
@@ -247,10 +250,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
             }
         });
 
-        copy_url.setOnClickListener(new View.OnClickListener() {
+        copy_website.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ClipData clip = ClipData.newPlainText("account", accounts.get(position).getUrl());
+                ClipData clip = ClipData.newPlainText("account", accounts.get(position).getWebsite());
                 clipboard.setPrimaryClip(clip);
             }
         });
@@ -301,7 +304,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
 
     //region save/load methods
 
-    // Adds account url to accounts.txt
+    // Adds account website to accounts.txt
     public void storeAccount(String name){
         String accounts = readFile();
         accounts += name;
@@ -313,7 +316,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         String textToSave = text;
 
         try {
-            FileOutputStream fileOutputStream = openFileOutput("accounts.txt", MODE_PRIVATE);
+            FileOutputStream fileOutputStream = openFileOutput(FILE, MODE_PRIVATE);
             fileOutputStream.write(textToSave.getBytes());
             fileOutputStream.close();
 
@@ -327,7 +330,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
     //Read accounts.txt and return a string
     public String readFile() {
         try {
-            FileInputStream fileInputStream = openFileInput("accounts.txt");
+            FileInputStream fileInputStream = openFileInput(FILE);
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
 
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
@@ -349,7 +352,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
     //Read accounts.txt excluding an account
     public String readFileExcluding(String account) {
         try {
-            FileInputStream fileInputStream = openFileInput("accounts.txt");
+            FileInputStream fileInputStream = openFileInput(FILE);
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
 
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
@@ -375,7 +378,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
     public void readFileAndFill() {
         LinkedList<Account> ACCOUNTS = new LinkedList<>();
         try {
-            FileInputStream fileInputStream = openFileInput("accounts.txt");
+            FileInputStream fileInputStream = openFileInput(FILE);
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
 
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
@@ -383,8 +386,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
             String lines;
             while ((lines = bufferedReader.readLine()) != null) {
                 try {
-                    Account newAccount = new Account(loadData(lines,ACCOUNT_USERNAME),loadData(lines,ACCOUNT_PASSWORD),loadData(lines,ACCOUNT_URL),loadData(lines,ACCOUNT_EMAIL));
-                    if (!newAccount.getUrl().equals("0")) {
+                    Account newAccount = new Account(loadData(lines,ACCOUNT_USERNAME),loadData(lines,ACCOUNT_PASSWORD),loadData(lines,ACCOUNT_website),loadData(lines,ACCOUNT_EMAIL));
+                    if (!newAccount.getWebsite().equals("0")) {
                         ACCOUNTS.add(newAccount);
                     }
                 }catch (Exception e){
@@ -436,7 +439,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove(ACCOUNT_USERNAME);
         editor.remove(ACCOUNT_PASSWORD);
-        editor.remove(ACCOUNT_URL);
+        editor.remove(ACCOUNT_website);
         editor.remove(ACCOUNT_EMAIL);
         editor.remove(pref);
         editor.apply();

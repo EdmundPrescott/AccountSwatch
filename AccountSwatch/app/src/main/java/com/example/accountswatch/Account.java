@@ -10,7 +10,7 @@ public class Account extends AppCompatActivity implements Parcelable {
 
         private String username;
         private String password;
-        private String url;
+        private String website;
         private String email;
 
         //endregion
@@ -21,10 +21,10 @@ public class Account extends AppCompatActivity implements Parcelable {
         public Account(){}
 
         // Variable Constructor
-        public Account(String Username, String Password, String Url, String Email) {
+        public Account(String Username, String Password, String website, String Email) {
             this.username = Username;
             this.password = Password;
-            this.url = Url;
+            this.website = website;
             this.email = Email;
         }
 
@@ -32,7 +32,7 @@ public class Account extends AppCompatActivity implements Parcelable {
         public Account(Parcel in){
             this.username = in.readString();
             this.password = in.readString();
-            this.url = in.readString();
+            this.website = in.readString();
             this.email = in.readString();
         }
 
@@ -44,12 +44,12 @@ public class Account extends AppCompatActivity implements Parcelable {
 
         public String getPassword() { return this.password; }
 
-        public String getUrl(){ return this.url; }
+        public String getWebsite(){ return this.website; }
 
         public String getEmail() { return this.email; }
 
         public String getAll() {
-            return this.username+"\n"+this.password+"\n"+this.url+"\n"+this.email;
+            return this.username+"\n"+this.password+"\n"+this.website+"\n"+this.email;
         }
 
         //endregion
@@ -80,7 +80,7 @@ public class Account extends AppCompatActivity implements Parcelable {
         public void writeToParcel(Parcel parcel, int flags) {
             parcel.writeString(this.username);
             parcel.writeString(this.password);
-            parcel.writeString(this.url);
+            parcel.writeString(this.website);
             parcel.writeString(this.email);
         }
 

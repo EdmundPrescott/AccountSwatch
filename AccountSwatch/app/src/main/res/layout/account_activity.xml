@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#33302f">
 
-    <!-- Enter Username -->
+    <!-- Enter Username Header -->
     <TextView
         android:id="@+id/enter_username_title"
         android:layout_width="0dp"
@@ -18,6 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:textAlignment="center"/>
 
+    <!-- Enter Username -->
     <EditText
         android:id="@+id/enter_username"
         android:layout_width="0dp"
@@ -32,7 +32,7 @@
         android:textAlignment="center"/>
 
 
-    <!-- Enter Password -->
+    <!-- Enter Password Header -->
     <TextView
         android:id="@+id/enter_password_title"
         android:layout_width="0dp"
@@ -45,6 +45,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enter_username" />
 
+    <!-- Enter Password -->
     <EditText
         android:id="@+id/enter_password"
         android:layout_width="0dp"
@@ -58,9 +59,9 @@
         app:layout_constraintTop_toBottomOf="@+id/enter_password_title"
         android:textAlignment="center"/>
 
-    <!-- Enter Title -->
+    <!-- Enter Website Header -->
     <TextView
-        android:id="@+id/url_title"
+        android:id="@+id/website_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -71,8 +72,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enter_password" />
 
+    <!-- Enter Website -->
     <EditText
-        android:id="@+id/website_url"
+        android:id="@+id/website_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -80,10 +82,10 @@
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/url_title"
+        app:layout_constraintTop_toBottomOf="@+id/website_title"
         android:textAlignment="center"/>
 
-    <!-- Create account button -->
+    <!-- Create Account Button -->
     <Button
         android:id="@+id/create_account"
         android:layout_width="wrap_content"
@@ -93,6 +95,6 @@
         android:text="@string/create_account"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/website_url" />
+        app:layout_constraintTop_toBottomOf="@+id/website_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

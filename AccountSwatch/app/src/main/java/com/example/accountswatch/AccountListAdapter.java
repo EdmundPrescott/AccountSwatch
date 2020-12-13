@@ -45,7 +45,7 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Account account = listItems.get(position);
-        holder.title.setText(account.getUrl());
+        holder.title.setText(account.getWebsite());
     }
 
     @Override

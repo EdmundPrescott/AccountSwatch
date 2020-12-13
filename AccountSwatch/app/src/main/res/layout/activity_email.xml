@@ -2,25 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#33302f">
 
-    <!-- Save email button -->
-    <Button
-        android:id="@+id/save_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="WriteBtn"
-        android:text="@string/write_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enter_email"
-        android:backgroundTint="#def4ff"/>
-
-    <!-- Enter email -->
+    <!-- Enter Email -->
     <EditText
         android:id="@+id/enter_email"
         android:layout_width="0dp"
@@ -37,5 +23,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:background="#ffffff"/>
+
+    <!-- Save Email Button -->
+    <Button
+        android:id="@+id/save_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="WriteBtn"
+        android:text="@string/write_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enter_email"
+        android:backgroundTint="#def4ff"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

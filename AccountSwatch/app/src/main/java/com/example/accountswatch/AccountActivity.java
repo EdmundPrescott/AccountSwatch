@@ -50,7 +50,7 @@ public class AccountActivity extends AppCompatActivity implements SaveLoad {
 
     private EditText username_field;
     private EditText password_field;
-    private EditText url_field;
+    private EditText website_field;
 
     // Create account button
     private Button createAccount;
@@ -80,7 +80,7 @@ public class AccountActivity extends AppCompatActivity implements SaveLoad {
         //region initialize account activity fields
         username_field = findViewById(R.id.enter_username);
         password_field = findViewById(R.id.enter_password);
-        url_field = findViewById(R.id.website_url);
+        website_field = findViewById(R.id.website_name);
 
         // Loads page with generated account info
         username_field.setText(random(usernameIncludeNumbers,usernameIncludesSpecialChars,usernameLength));
@@ -95,19 +95,19 @@ public class AccountActivity extends AppCompatActivity implements SaveLoad {
                 // Get data from account information fields
                 String username = username_field.getText().toString();
                 String password = password_field.getText().toString();
-                String url = url_field.getText().toString();
+                String website = website_field.getText().toString();
 
                 // Check to see if the data is valid (more or less)
-                if (username.length() < usernameLength || password.length() < passwordLength || url.length() < 7){
+                if (username.length() < usernameLength || password.length() < passwordLength || website.length() < 7){
                     // failed
                 }else {
                     // succeeded, a new account is sent to the main activity
-                    Account newAccount = new Account(username_field.getText().toString(), password_field.getText().toString(), url_field.getText().toString(),loadData(INFO_ACTIVITY,EMAIL));
+                    Account newAccount = new Account(username_field.getText().toString(), password_field.getText().toString(), website_field.getText().toString(),loadData(INFO_ACTIVITY,EMAIL));
                     ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                     ClipData clip = ClipData.newPlainText("account",
                             newAccount.getUsername()+"\n"+
                                     newAccount.getPassword()+"\n"+
-                                    newAccount.getUrl()+"\n"+
+                                    newAccount.getWebsite()+"\n"+
                                     newAccount.getEmail()+"\n");
                     clipboard.setPrimaryClip(clip);
                     Intent resultIntent = new Intent();

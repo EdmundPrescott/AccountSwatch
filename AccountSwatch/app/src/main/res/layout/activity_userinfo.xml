@@ -1,75 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#33302f">
 
-    <!-- Password Numberpicker -->
-    <NumberPicker
-        android:id="@+id/numberPicker_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="56dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_length" />
-
-    <!-- Password numberpicker header -->
+    <!-- Username Header -->
     <TextView
-        android:id="@+id/password_length"
-        android:layout_width="204dp"
+        android:id="@+id/username_header"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:background="#def4ff"
         android:padding="5dp"
-        android:text="@string/password_length"
+        android:text="@string/username_details"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include_chars_password" />
-
-    <!-- Password switches -->
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/include_nums_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/include_numbers"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passowrd_header" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/include_chars_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/include_special_characters"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include_nums_password" />
-
-    <!-- Username numberpicker header -->
-    <TextView
-        android:id="@+id/username_length"
-        android:layout_width="204dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="#def4ff"
-        android:padding="5dp"
-        android:text="@string/username_length"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include_chars_password" />
-
-    <!-- Username numberpicker -->
-    <NumberPicker
-        android:id="@+id/numberPicker_username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_length"
-        />
-
-    <!-- Username switches -->
+    <!-- Username Switches -->
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/include_nums_username"
         android:layout_width="wrap_content"
@@ -89,22 +38,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include_nums_username" />
 
-    <!-- Username header -->
+    <!-- Password Header -->
     <TextView
-        android:id="@+id/username_header"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:background="#def4ff"
-        android:padding="5dp"
-        android:text="@string/username_details"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- Passowrd header -->
-    <TextView
-        android:id="@+id/passowrd_header"
+        android:id="@+id/password_header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -114,5 +50,68 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include_chars_username" />
+
+    <!-- Password Switches -->
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/include_nums_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/include_numbers"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_header" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/include_chars_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/include_special_characters"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include_nums_password" />
+
+    <!-- Username Numberpicker Header -->
+    <TextView
+        android:id="@+id/username_length"
+        android:layout_width="204dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#def4ff"
+        android:padding="5dp"
+        android:text="@string/username_length"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include_chars_password" />
+
+    <!-- Username Numberpicker -->
+    <NumberPicker
+        android:id="@+id/numberPicker_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username_length"
+        />
+
+    <!-- Password Numberpicker Header -->
+    <TextView
+        android:id="@+id/password_length"
+        android:layout_width="204dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#def4ff"
+        android:padding="5dp"
+        android:text="@string/password_length"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include_chars_password" />
+
+    <!-- Password Numberpicker -->
+    <NumberPicker
+        android:id="@+id/numberPicker_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_length" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
