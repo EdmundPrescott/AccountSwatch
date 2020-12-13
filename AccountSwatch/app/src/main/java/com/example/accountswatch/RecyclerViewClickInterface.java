@@ -1,4 +1,3 @@
-// Complete
 package com.example.accountswatch;
 
 public interface RecyclerViewClickInterface

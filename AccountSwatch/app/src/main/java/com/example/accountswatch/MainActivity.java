@@ -1,10 +1,8 @@
-// Complete
 package com.example.accountswatch;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -12,55 +10,57 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewClickInterface, SharedPreferences.OnSharedPreferenceChangeListener, SaveLoad {
 
-    // Main buttons
+    //region main buttons
+
     private Button set_email;
     private Button generate_info;
 
-    // Recyclerview fields
+    //endregion
+
+    //region recyclerview variables
+
     private RecyclerView accounts_view;
     private AccountListAdapter mAdapter;
     private LinkedList<Account> accounts = new LinkedList<>();
 
-    // onclick Popup
-    private Dialog myDialog;
+    //endregion
+
+    //region intent request code and load tags
 
     // Receives account from account activity
     private final int REQUEST_CODE = 1;
 
-    // Save tags
+    // Load tags
     private static final String ACCOUNT_USERNAME = "USERNAME";
     private static final String ACCOUNT_PASSWORD = "PASSWORD";
     private static final String ACCOUNT_URL = "URL";
     private static final String ACCOUNT_EMAIL = "EMAIL";
 
-    // Popup
+    //endregion
+
+    //region popup variables etc
+
+    // onclick Popup
+    private Dialog myDialog;
+
+    // dialog variables
     private TextView username;
     private TextView password;
     private TextView url;
@@ -76,17 +76,18 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
     private Account popupAccount;
     private int accountPosition;
 
-
     // Used to store text in clipboard
     private ClipboardManager clipboard;
 
+    //endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // initialize buttons
+        //region initialize buttons
+
         set_email = findViewById(R.id.enter_email_button);
         generate_info = findViewById(R.id.generate_username_password);
 
@@ -102,12 +103,19 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
             }
         });
 
-        // Initializes recyclerview
+        //endregion
+
+        //region initialize recyclerview
+
         accounts_view = findViewById(R.id.accounts_view);
         mAdapter = new AccountListAdapter(accounts, this, this);
         accounts_view.setAdapter(mAdapter);
         accounts_view.setLayoutManager(new LinearLayoutManager(this));
         readFileAndFill();
+
+        //endregion
+
+        //region initialize misc
 
         // Initializes popup
         myDialog = new Dialog(this);
@@ -115,7 +123,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         // Initialize clipboard
         clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
 
+        //endregion
+
     }
+
+    //region get new account from account activity
 
     // Get account from account activity and save it
     @Override
@@ -132,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
             saveData(newAccount.getUrl(),ACCOUNT_URL,newAccount.getUrl());
             saveData(newAccount.getUrl(),ACCOUNT_EMAIL,newAccount.getEmail());
 
-            // Save account website in a txt
+            // Save account website in account.txt
             storeAccount(newAccount.getUrl());
 
             // Add account to recyclerview
@@ -142,6 +154,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
 
         }
     }
+
+    //endregion
+
+    //region go to other activity
 
     // Go to email activity
     public void set_email(){
@@ -155,28 +171,29 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         startActivityForResult(intent, REQUEST_CODE);
     }
 
+    //endregion
+
     // recyclerview onClick
     @Override
     public void onItemClick(final int position) {
 
-        // Initialize the popup with everything
+        //region initialize layout and variables
+
+        // Initialize popup layout
         myDialog.setContentView(R.layout.custompopup);
 
-        // Initialize image buttons
-        copy_username = myDialog.findViewById(R.id.copy_username);
-        copy_password = myDialog.findViewById(R.id.copy_password);
-        copy_url = myDialog.findViewById(R.id.copy_url);
-        copy_email = myDialog.findViewById(R.id.copy_email);
+        // Save the account and account position for when the buttons get clicked
+        popupAccount = accounts.get(position);
+        accountPosition = position;
 
-        // Initialize textviews
+        //endregion
+
+        //region initialize textviews
+
         username = myDialog.findViewById(R.id.username_popup);
         password = myDialog.findViewById(R.id.password_popup);
         url = myDialog.findViewById(R.id.url_popup);
         email = myDialog.findViewById(R.id.email_popup);
-
-        // Initialize buttons
-        delete = myDialog.findViewById(R.id.delete_button);
-        sendEmail = myDialog.findViewById(R.id.send_email_button);
 
         // Set textview text
         username.setText("Username: "+accounts.get(position).getUsername());
@@ -184,10 +201,17 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         url.setText("Website: "+accounts.get(position).getUrl());
         email.setText("Email: "+accounts.get(position).getEmail());
 
-        // Save the account and account position for when the buttons get clicked
-        popupAccount = accounts.get(position);
-        accountPosition = position;
+        //endregion
 
+        //region initialize buttons
+
+        delete = myDialog.findViewById(R.id.delete_button);
+        sendEmail = myDialog.findViewById(R.id.send_email_button);
+
+        copy_username = myDialog.findViewById(R.id.copy_username);
+        copy_password = myDialog.findViewById(R.id.copy_password);
+        copy_url = myDialog.findViewById(R.id.copy_url);
+        copy_email = myDialog.findViewById(R.id.copy_email);
 
         // Initialize onclick functions for buttons
         delete.setOnClickListener(new View.OnClickListener() {
@@ -239,15 +263,19 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
             }
         });
 
+        //endregion
+
         myDialog.show();
     }
 
+
+    //region setting menu methods
+
+    // Unused
     @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) { }
 
-    }
 
-    // Setting menu methods
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         /* Use AppCompatActivity's method getMenuInflater to get a handle on the menu inflater */
@@ -268,6 +296,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         }
         return super.onOptionsItemSelected(item);
     }
+
+    //endregion
+
+    //region save/load methods
 
     // Adds account url to accounts.txt
     public void storeAccount(String name){
@@ -418,6 +450,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
 
     }
 
+    //endregion
+
+    //region email method
+
     // Send email of an account to users email
     public void sendMail(String name, String Message){
         Intent intent = new Intent(Intent.ACTION_SEND);
@@ -430,4 +466,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         intent.setType("message/rfc822");
         startActivity(intent.createChooser(intent,"Choose an email client"));
     }
+
+    //endregion
+
 }

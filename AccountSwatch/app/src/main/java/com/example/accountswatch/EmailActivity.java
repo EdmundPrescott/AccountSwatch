@@ -1,4 +1,3 @@
-// Complete
 package com.example.accountswatch;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,15 +7,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class EmailActivity extends AppCompatActivity implements SaveLoad {
 
+    //region activity variables
+
     // Email field and enter email button
     private Button save_email;
     private EditText email;
+    // Message maker
+    private Toast message;
+
+    //endregion
+
+    //region save/load tags
 
     // Save tag
     private static final String EMAIL_ACTIVITY = "email_prefs";
@@ -24,13 +30,14 @@ public class EmailActivity extends AppCompatActivity implements SaveLoad {
     // Load tag
     private static final String EMAIL = "EMAIL";
 
-    // Message maker
-    private Toast message;
+    //endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email);
+
+        //region initialize fields
 
         // Initialize button and EditText
         save_email = findViewById(R.id.save_email);
@@ -54,8 +61,11 @@ public class EmailActivity extends AppCompatActivity implements SaveLoad {
             }
         });
 
+        //endregion
 
     }
+
+    //region email methods
 
     // Checks to see if email is in email format
     public static boolean isEmailValid(String email) {
@@ -65,26 +75,6 @@ public class EmailActivity extends AppCompatActivity implements SaveLoad {
         return matcher.matches();
     }
 
-    @Override
-    public void saveData(String pref, String key, String data){
-        SharedPreferences sharedPreferences = getSharedPreferences(pref,MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        editor.putString(key, data);
-
-        editor.apply();
-
-        Toast.makeText(this,data+" saved!",Toast.LENGTH_SHORT).show();
-
-    }
-
-    @Override
-    public String loadData(String pref, String key){
-        SharedPreferences sharedPreferences = getSharedPreferences(pref, MODE_PRIVATE);
-        return sharedPreferences.getString(key,"error");
-
-    }
-
     // showToasts
     private void showToast(String text) {
         if (message!=null)
@@ -92,4 +82,29 @@ public class EmailActivity extends AppCompatActivity implements SaveLoad {
         message = Toast.makeText(this, text, Toast.LENGTH_SHORT);
         message.show();
     }
+
+    //endregion
+
+
+    //region save/load methods
+
+    @Override
+    public void saveData(String pref, String key, String data){
+        SharedPreferences sharedPreferences = getSharedPreferences(pref,MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString(key, data);
+        editor.apply();
+
+        Toast.makeText(this,data+" saved!",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public String loadData(String pref, String key){
+        SharedPreferences sharedPreferences = getSharedPreferences(pref, MODE_PRIVATE);
+        return sharedPreferences.getString(key,"error");
+    }
+
+    //endregion
+
 }

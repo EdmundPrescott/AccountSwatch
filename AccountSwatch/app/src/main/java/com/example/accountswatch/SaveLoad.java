@@ -1,8 +1,7 @@
-// Complete
 package com.example.accountswatch;
 
 public interface SaveLoad {
-    // This was for my convenience
+    // application save/load method template
     void saveData(String pref, String key, String data);
     String loadData(String pref, String key);
 

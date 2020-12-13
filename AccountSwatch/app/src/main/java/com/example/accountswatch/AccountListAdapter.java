@@ -1,27 +1,27 @@
-// Complete
 package com.example.accountswatch;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.LinkedList;
 import java.util.List;
 
 public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.ViewHolder> {
 
-    // Recyclerview displays this list
-    List<Account> listItems = new LinkedList<>();
+    //region recyclerview variables
 
-    // Useful :^)
+    // Recyclerview displays this list
+    private List<Account> listItems = new LinkedList<>();
+
     private LayoutInflater mInflater;
     private RecyclerViewClickInterface recyclerViewClickInterface;
 
-    // Constructor
+    //endregion
+
+    //region constructor
     public AccountListAdapter(List<Account> accounts, MainActivity context, MainActivity recyclerViewClickInterface) {
         // Initializes the layout inflater, recyclerview values, and the recyclerview onClick
         mInflater = LayoutInflater.from(context);
@@ -29,7 +29,11 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
         this.recyclerViewClickInterface = recyclerViewClickInterface;
     }
 
-    // Inflated the individual views
+    //endregion
+
+    //region recyclerview methods
+
+    // Inflate the individual views
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -37,24 +41,22 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
         return new ViewHolder(view, this);
     }
 
-    // Initializes the views fields
+    // Initialize the individual titles
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Account account = listItems.get(position);
         holder.title.setText(account.getUrl());
     }
 
-    // ViewHolder method
     @Override
     public int getItemCount() {
         return listItems.size();
     }
 
-    public void remove(int position){
-        listItems.remove(position);
-    }
+    //endregion
 
-    // Individual recyclerview code
+    //region recyclerview node
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView title;
         final AccountListAdapter mAdapter;
@@ -71,4 +73,7 @@ public class AccountListAdapter extends RecyclerView.Adapter<AccountListAdapter.
             });
         }
     }
+
+    //endregion
+
 }

@@ -1,4 +1,3 @@
-// Complete
 package com.example.accountswatch;
 
 import android.content.SharedPreferences;
@@ -7,18 +6,12 @@ import android.os.Bundle;
 import android.widget.CompoundButton;
 import android.widget.NumberPicker;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
 public class InfoActivity extends AppCompatActivity implements SaveLoad, NumberPicker.OnValueChangeListener {
 
-    // Numberpickers for username and password length
-    private NumberPicker numberPicker_password;
-    private NumberPicker numberPicker_username;
-
-    // Message maker
-    private Toast message;
+    //region save/load tags
 
     // Save tag
     private static final String INFO_ACTIVITY = "email_prefs";
@@ -32,6 +25,10 @@ public class InfoActivity extends AppCompatActivity implements SaveLoad, NumberP
     private static final String USERNAME_INCLUDES_NUMBERS = "USERNAME NUMBERS";
     private static final String USERNAME_INCLUDE_SPCHARS = "USERNAME SPECIAL";
 
+    //endregion
+
+    //region switches and numberpickers etc
+
     // Switches for username and password character inclusions
     private SwitchCompat includeNumbers_username;
     private SwitchCompat includeSpecialChars_username;
@@ -39,7 +36,17 @@ public class InfoActivity extends AppCompatActivity implements SaveLoad, NumberP
     private SwitchCompat includeNumbers_password;
     private SwitchCompat includeSpecialChars_password;
 
-    // Username and password settings
+    // Numberpickers for username and password length
+    private NumberPicker numberPicker_password;
+    private NumberPicker numberPicker_username;
+
+    // Message maker
+    private Toast message;
+
+    //endregion
+
+    //region username and password settings
+
     private int passwordLength = 0;
     private boolean passwordIncludeNumbers = true;
     private boolean passwordIncludesSpecialChars = true;
@@ -48,17 +55,15 @@ public class InfoActivity extends AppCompatActivity implements SaveLoad, NumberP
     private boolean usernameIncludeNumbers = true;
     private boolean usernameIncludesSpecialChars = true;
 
-
-
-
-
+    //endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userinfo);
 
-        // Set numberpickers
+        //region initialize numberpickers
+
         numberPicker_username = findViewById(R.id.numberPicker_username);
         numberPicker_username.setMinValue(0);
         numberPicker_username.setMaxValue(20);
@@ -69,7 +74,14 @@ public class InfoActivity extends AppCompatActivity implements SaveLoad, NumberP
         numberPicker_password.setMaxValue(20);
         numberPicker_password.setOnValueChangedListener(this);
 
-        // Load settings
+        // Change number picker text to white
+        numberPicker_username.setTextColor(Color.WHITE);
+        numberPicker_password.setTextColor(Color.WHITE);
+
+        //endregion
+
+        //region load settings
+
         passwordLength = Integer.parseInt(loadData(INFO_ACTIVITY, PASSWORD_LENGTH));
         passwordIncludeNumbers = Boolean.parseBoolean(loadData(INFO_ACTIVITY,PASSWORD_INCLUDES_NUMBERS));
         passwordIncludesSpecialChars = Boolean.parseBoolean(loadData(INFO_ACTIVITY, PASSWORD_INCLUDE_SPCHARS));
@@ -78,8 +90,10 @@ public class InfoActivity extends AppCompatActivity implements SaveLoad, NumberP
         usernameIncludeNumbers = Boolean.parseBoolean(loadData(INFO_ACTIVITY, USERNAME_INCLUDES_NUMBERS));
         usernameIncludesSpecialChars = Boolean.parseBoolean(loadData(INFO_ACTIVITY, USERNAME_INCLUDE_SPCHARS));
 
+        //endregion
 
-        // Initialize switches
+        //region initialize switches
+
         includeNumbers_username = findViewById(R.id.include_nums_username);
         includeNumbers_username.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -116,7 +130,10 @@ public class InfoActivity extends AppCompatActivity implements SaveLoad, NumberP
             }
         });
 
-        // Initialize settings fields
+        //endregion
+
+        //region initialize settings
+
         numberPicker_username.setValue(usernameLength);
         includeNumbers_username.setChecked(usernameIncludeNumbers);
         includeSpecialChars_username.setChecked(usernameIncludesSpecialChars);
@@ -125,12 +142,12 @@ public class InfoActivity extends AppCompatActivity implements SaveLoad, NumberP
         includeNumbers_password.setChecked(passwordIncludeNumbers);
         includeSpecialChars_password.setChecked(passwordIncludesSpecialChars);
 
-        // Change number picker text to white
-        numberPicker_username.setTextColor(Color.WHITE);
-        numberPicker_password.setTextColor(Color.WHITE);
+        //endregion
 
     }
 
+
+    //region save/load
 
     @Override
     public void saveData(String pref, String key, String data) {
@@ -138,20 +155,19 @@ public class InfoActivity extends AppCompatActivity implements SaveLoad, NumberP
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.putString(key, data);
-
         editor.apply();
-
-
     }
 
     @Override
     public String loadData(String pref, String key){
         SharedPreferences sharedPreferences = getSharedPreferences(pref, MODE_PRIVATE);
         return sharedPreferences.getString(key,"0");
-
     }
 
-    // Displays the number selected for the number picker
+    //endregion
+
+    //region info methods
+
     @Override
     public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
         if (picker == numberPicker_password) {
@@ -171,5 +187,6 @@ public class InfoActivity extends AppCompatActivity implements SaveLoad, NumberP
         message.show();
     }
 
+    //endregion
 
 }

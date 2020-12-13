@@ -1,4 +1,3 @@
-// Complete
 package com.example.accountswatch;
 
 import android.content.ClipData;
@@ -10,22 +9,26 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.Random;
 
 public class AccountActivity extends AppCompatActivity implements SaveLoad {
+
+    //region username and password settings
+
+    // Username settings
+    private int usernameLength = 7;
+    private boolean usernameIncludeNumbers = true;
+    private boolean usernameIncludesSpecialChars = true;
 
     // Password settings
     private int passwordLength = 7;
     private boolean passwordIncludeNumbers = true;
     private boolean passwordIncludesSpecialChars = true;
 
-    // Username settings
-    private int usernameLength = 7;
-    private boolean usernameIncludeNumbers = true;
-    private boolean usernameIncludesSpecialChars = true;
+    //endregion
+
+    //region save/load tags
 
     // Save tag
     private static final String INFO_ACTIVITY = "email_prefs";
@@ -41,7 +44,10 @@ public class AccountActivity extends AppCompatActivity implements SaveLoad {
 
     private static final String EMAIL = "EMAIL";
 
-    // Account information fields
+    //endregion
+
+    //region account information fields
+
     private EditText username_field;
     private EditText password_field;
     private EditText url_field;
@@ -49,10 +55,15 @@ public class AccountActivity extends AppCompatActivity implements SaveLoad {
     // Create account button
     private Button createAccount;
 
+    //endregion
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.account_activity);
+
+        //region load username and password settings
 
         // Load Password Settings
         passwordLength = Integer.parseInt(loadData(INFO_ACTIVITY, PASSWORD_LENGTH));
@@ -64,7 +75,9 @@ public class AccountActivity extends AppCompatActivity implements SaveLoad {
         usernameIncludeNumbers = Boolean.parseBoolean(loadData(INFO_ACTIVITY, USERNAME_INCLUDES_NUMBERS));
         usernameIncludesSpecialChars = Boolean.parseBoolean(loadData(INFO_ACTIVITY, USERNAME_INCLUDE_SPCHARS));
 
-        // Initialize account information fields
+        //endregion
+
+        //region initialize account activity fields
         username_field = findViewById(R.id.enter_username);
         password_field = findViewById(R.id.enter_password);
         url_field = findViewById(R.id.website_url);
@@ -78,6 +91,7 @@ public class AccountActivity extends AppCompatActivity implements SaveLoad {
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 // Get data from account information fields
                 String username = username_field.getText().toString();
                 String password = password_field.getText().toString();
@@ -100,15 +114,17 @@ public class AccountActivity extends AppCompatActivity implements SaveLoad {
                     resultIntent.putExtra("result", newAccount);
                     setResult(RESULT_OK, resultIntent);
 
-
-
                     finish();
 
                 }
             }
         });
 
+        //endregion
+
     }
+
+    //region save/load methods
 
     @Override
     public void saveData(String pref, String key, String data) {
@@ -116,7 +132,6 @@ public class AccountActivity extends AppCompatActivity implements SaveLoad {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.putString(key, data);
-
         editor.apply();
     }
 
@@ -126,29 +141,41 @@ public class AccountActivity extends AppCompatActivity implements SaveLoad {
         return sharedPreferences.getString(key,"0");
     }
 
-    // Creates a random string for account information
+    //endregion
+
+    //region create random string
+
     public static String random(boolean containsNumbers, boolean containsSpecialCharacters, int length) {
+
         int stringLength = length - 1;
         Random generator = new Random();
         StringBuilder randomStringBuilder = new StringBuilder();
         char tempChar;
 
+        // Adds a number to the string
         if (containsNumbers){
             randomStringBuilder.append(generator.nextInt(9));
             stringLength--;
         }
 
+        // Adds a special character to the string
         if (containsSpecialCharacters){
             randomStringBuilder.append((char) (generator.nextInt(5) + 33));
             stringLength--;
         }
 
+        // Adds at least one char
         randomStringBuilder.append((char) (generator.nextInt(25) + 97));
 
+        // Adds the rest of the characters to the string
         for (int i = 0; i < stringLength; i++){
             tempChar = (char) (generator.nextInt(25) + 65);
             randomStringBuilder.append(tempChar);
         }
+
         return randomStringBuilder.toString();
     }
+
+    //endregion
+
 }

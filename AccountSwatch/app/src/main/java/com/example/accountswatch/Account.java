@@ -1,23 +1,27 @@
-// Complete
 package com.example.accountswatch;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Account extends AppCompatActivity implements Parcelable {
 
-        // Account Fields
+        // region variables
+
         private String username;
         private String password;
         private String url;
         private String email;
 
+        //endregion
+
+        //region constructors
+
+        // Default Constructor
         public Account(){}
 
-        // Initial Constructor
-        public Account(String Username, String Password, String Url, String Email){
+        // Variable Constructor
+        public Account(String Username, String Password, String Url, String Email) {
             this.username = Username;
             this.password = Password;
             this.url = Url;
@@ -32,14 +36,13 @@ public class Account extends AppCompatActivity implements Parcelable {
             this.email = in.readString();
         }
 
-        // Getters
-        public String getUsername() {
-            return this.username;
-        }
+        //endregion
 
-        public String getPassword() {
-            return this.password;
-        }
+        //region getMethods
+
+        public String getUsername() { return this.username; }
+
+        public String getPassword() { return this.password; }
 
         public String getUrl(){ return this.url; }
 
@@ -49,7 +52,11 @@ public class Account extends AppCompatActivity implements Parcelable {
             return this.username+"\n"+this.password+"\n"+this.url+"\n"+this.email;
         }
 
-        // Parcel Methods
+        //endregion
+
+        //region parcel methods
+
+        // Used to save/load
         public static final Creator<Account> CREATOR = new Creator<Account>() {
             @Override
             public Account createFromParcel(Parcel in) {
@@ -62,10 +69,11 @@ public class Account extends AppCompatActivity implements Parcelable {
         }
         };
 
+        // Unused
         @Override
         public int describeContents() {
-        return 0;
-    }
+            return 0;
+        }
 
         // Save Parcel Object
         @Override
@@ -76,5 +84,6 @@ public class Account extends AppCompatActivity implements Parcelable {
             parcel.writeString(this.email);
         }
 
+        //endregion
 
 }
