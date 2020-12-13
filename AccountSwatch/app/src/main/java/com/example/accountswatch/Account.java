@@ -38,7 +38,7 @@ public class Account extends AppCompatActivity implements Parcelable {
 
         //endregion
 
-        //region getMethods
+        //region get/set Methods
 
         public String getUsername() { return this.username; }
 
@@ -47,6 +47,14 @@ public class Account extends AppCompatActivity implements Parcelable {
         public String getWebsite(){ return this.website; }
 
         public String getEmail() { return this.email; }
+
+        public void setUsername(String x) { this.username = x; }
+
+        public void setPassword(String x) { this.password = x; }
+
+        public void setWebsite(String x){ this.website = x; }
+
+        public void setEmail(String x) { this.email = x; }
 
         public String getAll() {
             return this.username+"\n"+this.password+"\n"+this.website+"\n"+this.email;

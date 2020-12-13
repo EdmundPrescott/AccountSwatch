@@ -10,11 +10,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import java.io.BufferedReader;
@@ -64,10 +67,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
     private Dialog myDialog;
 
     // dialog variables
-    private TextView username;
-    private TextView password;
-    private TextView website;
-    private TextView email;
+    private EditText username;
+    private EditText password;
+    private EditText website;
+    private EditText email;
 
     private ImageButton copy_username;
     private ImageButton copy_password;
@@ -191,18 +194,75 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
 
         //endregion
 
-        //region initialize textviews
+        //region initialize editTexts
 
         username = myDialog.findViewById(R.id.username_popup);
         password = myDialog.findViewById(R.id.password_popup);
         website = myDialog.findViewById(R.id.website_popup);
         email = myDialog.findViewById(R.id.email_popup);
 
-        // Set textview text
-        username.setText("Username: "+accounts.get(position).getUsername());
-        password.setText("Password: "+accounts.get(position).getPassword());
-        website.setText("Website: "+accounts.get(position).getWebsite());
-        email.setText("Email: "+accounts.get(position).getEmail());
+        // Set editText's text
+        username.setText(accounts.get(position).getUsername());
+        password.setText(accounts.get(position).getPassword());
+        website.setText(accounts.get(position).getWebsite());
+        email.setText(accounts.get(position).getEmail());
+
+        // Listener that makes editTexts save their changes
+        username.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                saveData(popupAccount.getWebsite(),ACCOUNT_USERNAME,s.toString());
+                accounts.get(accountPosition).setUsername(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
+
+        password.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                saveData(popupAccount.getWebsite(),ACCOUNT_USERNAME,s.toString());
+                accounts.get(accountPosition).setPassword(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
+
+        website.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                saveData(popupAccount.getWebsite(),ACCOUNT_USERNAME,s.toString());
+                accounts.get(accountPosition).setWebsite(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
+
+        email.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                saveData(popupAccount.getWebsite(),ACCOUNT_USERNAME,s.toString());
+                accounts.get(accountPosition).setEmail(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
 
         //endregion
 
